@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+  <p>this is a XML program and below is an example of XML</p>
+  <div>
+    <b>To:</b><span id="to"></span><br>
+    <b>from:</b><span id="from"></span><br>
+    <b>message:</b><span id="message"></span><br>
+  </div>
+  <script>
+    if (window.XMLHttpRequest) {
+      xmlhttp = new XMLHttpRequest();
+    }
+    else {
+      xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+      if (this.readyState == 4 && this.status == 200) {
+        xmlDoc = xmlhttp.responseXML;
+        document.getElementById("to").innerHTML = xmlDoc.getElementsByTagName("to")[0].childNodes[0].nodeValue;
+        document.getElementById("from").innerHTML = xmlDoc.getElementsByTagName("from")[0].childNodes[0].nodeValue;
+        document.getElementById("message").innerHTML = xmlDoc.getElementsByTagName("body")[0].childNodes[0].nodeValue;
+      }
+    };
+    xmlhttp.open("GET", "demo.xml", true);
+    xmlhttp.send();
+
+
+
+  </script>
+
+</body>
+
+</html>
